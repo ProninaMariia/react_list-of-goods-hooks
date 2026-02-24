@@ -4,14 +4,14 @@ iframe {
 
 button {
   margin-right: 8px;
-  padding: 6px 12px;
   cursor: pointer;
+  padding: 6px 12px;
 }
 
 button.active {
+  border: 1px solid #007bff;
   background-color: #007bff;
   color: white;
-  border: 1px solid #007bff;
 }
 
 button.active:hover {
