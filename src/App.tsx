@@ -22,7 +22,7 @@ export const App: React.FC = () => {
   const [isReversed, setIsReversed] = useState(false);
 
   const visibleGoods = useMemo(() => {
-    let preparedGoods = [...goods];
+    const preparedGoods = [...goods];
 
     if (sortType === SortType.Alphabetically) {
       preparedGoods.sort((a, b) => a.localeCompare(b));
@@ -45,11 +45,12 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="app">
+      <div className="buttons">
         <button
           type="button"
           onClick={() => setSortType(SortType.Alphabetically)}
+          className={sortType === SortType.Alphabetically ? 'active' : ''}
         >
           Sort alphabetically
         </button>
@@ -57,6 +58,7 @@ export const App: React.FC = () => {
         <button
           type="button"
           onClick={() => setSortType(SortType.Length)}
+          className={sortType === SortType.Length ? 'active' : ''}
         >
           Sort by length
         </button>
@@ -64,15 +66,13 @@ export const App: React.FC = () => {
         <button
           type="button"
           onClick={() => setIsReversed(prev => !prev)}
+          className={isReversed ? 'active' : ''}
         >
           Reverse
         </button>
 
         {(sortType !== SortType.None || isReversed) && (
-          <button
-            type="button"
-            onClick={handleReset}
-          >
+          <button type="button" onClick={handleReset}>
             Reset
           </button>
         )}
@@ -80,12 +80,9 @@ export const App: React.FC = () => {
 
       <ul>
         {visibleGoods.map(good => (
-          <li key={good}>
-            {good}
-          </li>
+          <li key={good}>{good}</li>
         ))}
       </ul>
     </div>
   );
 };
-
